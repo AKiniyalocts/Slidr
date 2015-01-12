@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Slidr by r0adkll</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/r0adkll/Slidr">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/r0adkll/Slidr/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/r0adkll/Slidr/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Slidr</h1>
+          <p>Easily add slide to dismiss functionality to an Activity </p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/r0adkll">r0adkll</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="slidr" class="anchor" href="#slidr" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slidr</h1>
+
+<p><a href="https://maven-badges.herokuapp.com/maven-central/com.r0adkll/slidableactivity"><img src="https://maven-badges.herokuapp.com/maven-central/com.r0adkll/slidableactivity/badge.svg?style=flat" alt="Maven Central"></a></p>
+
+<p>Easily add slide-to-dismiss functionality to your Activity by calling <code>Slidr.attach(this)</code> in your <code>onCreate(..)</code> method. </p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>An example usage:</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-s">public</span> <span class="pl-s">class</span> <span class="pl-en">ExampleActivity</span> <span class="pl-s">extends</span> &lt;<span class="pl-e">Activity</span>|<span class="pl-e">FragmentActivity</span>|<span class="pl-e">ActionBarActivity</span>&gt; {
+
+    <span class="pl-st">@Override</span>
+    <span class="pl-s">public</span> <span class="pl-st">void</span> <span class="pl-en">onCreate</span>(<span class="pl-stj">Bundle</span> <span class="pl-v">savedInstanceState</span>){
+        <span class="pl-v">super</span><span class="pl-k">.</span>onCreate(savedInstanceState);
+        setContentView(<span class="pl-stj">R</span><span class="pl-k">.</span>layout<span class="pl-k">.</span>activity_example);
+        <span class="pl-st">int</span> primary <span class="pl-k">=</span> getResources()<span class="pl-k">.</span>getColor(<span class="pl-stj">R</span><span class="pl-k">.</span>color<span class="pl-k">.</span>primaryDark);
+        <span class="pl-st">int</span> secondary <span class="pl-k">=</span> getResources()<span class="pl-k">.</span>getColor(<span class="pl-stj">R</span><span class="pl-k">.</span>color<span class="pl-k">.</span>secondaryDark);
+        <span class="pl-stj">Slidr</span><span class="pl-k">.</span>attach(<span class="pl-v">this</span>, primary, secondary);
+    }
+
+}</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-s">public</span> <span class="pl-s">class</span> <span class="pl-en">ExampleActivity</span> <span class="pl-s">extends</span> &lt;<span class="pl-e">Activity</span>|<span class="pl-e">FragmentActivity</span>|<span class="pl-e">ActionBarActivity</span>&gt; {
+
+    <span class="pl-st">@Override</span>
+    <span class="pl-s">public</span> <span class="pl-st">void</span> <span class="pl-en">onCreate</span>(<span class="pl-stj">Bundle</span> <span class="pl-v">savedInstanceState</span>){
+        <span class="pl-v">super</span><span class="pl-k">.</span>onCreate(savedInstanceState);
+        setContentView(<span class="pl-stj">R</span><span class="pl-k">.</span>layout<span class="pl-k">.</span>activity_example);
+        <span class="pl-stj">Slidr</span><span class="pl-k">.</span>attach(<span class="pl-v">this</span>);
+    }
+
+}</pre></div>
+
+<p><code>Slidr.attach(...)</code> will return a <code>SlidrInterface</code> which gives you access to two methods:</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-stj">SlidrInterface</span><span class="pl-k">.</span>lock();
+<span class="pl-stj">SlidrInterface</span><span class="pl-k">.</span>unlock();</pre></div>
+
+<p>These methods lock or unlock the slidable touch interface.</p>
+
+<p>The theme that you use for your sliding activity must have these attributes set:</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">item</span> <span class="pl-e">name</span>=<span class="pl-s1"><span class="pl-pds">"</span>android:windowIsTranslucent<span class="pl-pds">"</span></span>&gt;true&lt;/<span class="pl-ent">item</span>&gt;  
+&lt;<span class="pl-ent">item</span> <span class="pl-e">name</span>=<span class="pl-s1"><span class="pl-pds">"</span>android:windowBackground<span class="pl-pds">"</span></span>&gt;@android:color/transparent&lt;/<span class="pl-ent">item</span>&gt;</pre></div>
+
+<p>Then in the layout of your activity you must give it a background like this;</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">LinearLayout</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">android</span>=<span class="pl-s1"><span class="pl-pds">"</span>http://schemas.android.com/apk/res/android<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">tools</span>=<span class="pl-s1"><span class="pl-pds">"</span>http://schemas.android.com/tools<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">app</span>=<span class="pl-s1"><span class="pl-pds">"</span>http://schemas.android.com/apk/res-auto<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">orientation</span>=<span class="pl-s1"><span class="pl-pds">"</span>vertical<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s1"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s1"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">background</span>=<span class="pl-s1"><span class="pl-pds">"</span>@color/background_material_light<span class="pl-pds">"</span></span>&gt;
+
+    ...</pre></div>
+
+<h2>
+<a id="including-in-your-project" class="anchor" href="#including-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Including in your project</h2>
+
+<p>Include this line in your gradle build file:</p>
+
+<div class="highlight highlight-groovy"><pre>compile <span class="pl-s1"><span class="pl-pds">'</span>com.r0adkll:slidableactivity:{latest_version}<span class="pl-pds">'</span></span></pre></div>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<ul>
+<li>  Drew Heavner, <strong><a href="http://r0adkll.com">r0adkll</a></strong>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright (c) 2014 Drew Heavner
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, 
+software distributed under the License is distributed on an 
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+either express or implied. See the License for the specific 
+language governing permissions and limitations under the License.
+</code></pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
